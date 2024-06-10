@@ -1,0 +1,16 @@
+PUSHD "%CD%"
+
+cd "..\..\Not Code\Custom PortableApps.com Launchers\GameMaker 8.2"
+mkdir ".Cmpl8r"
+copy ".compile" ".Cmpl8r"
+ren ".Cmpl8r\.compile" "[CompileTemp].bat"
+call ".Cmpl8r\[CompileTemp].bat"
+rmdir ".Cmpl8r" /S /Q
+
+POPD
+
+robocopy "..\..\Not Code\Custom PortableApps.com Launchers\GameMaker 8.2\Output" "Output" /MIR
+
+rmdir "..\..\Not Code\Custom PortableApps.com Launchers\GameMaker 8.2\Output" /S /Q
+
+"%AHK%\Compiler\Ahk2Exe.exe" /in "gm82_updater_fe.ahk" /out "Output\App\gm82_updater\gm82_updater_fe.exe" /icon "icon.ico" /compress 2 /base "%AHK%\v2\AutoHotkey64.exe"
